@@ -1,4 +1,4 @@
-* using log directory 'C:/Users/antoi/Desktop/Package_Metaan/Metaan.Rcheck'
+* using log directory 'C:/Users/antoi/Desktop/Package_Metaan_v0/Metaan.Rcheck'
 * using R version 4.0.2 (2020-06-22)
 * using platform: x86_64-w64-mingw32 (64-bit)
 * using session charset: ISO8859-1
@@ -21,7 +21,9 @@
 * checking for future file timestamps ... NOTE
 unable to verify current time
 * checking DESCRIPTION meta-information ... OK
-* checking top-level files ... OK
+* checking top-level files ... NOTE
+Non-standard file/directory found at top level:
+  'data-raw'
 * checking for left-over files ... OK
 * checking index information ... OK
 * checking package subdirectories ... OK
@@ -59,4 +61,4 @@ Variables in data frame 'IHD'
 * checking for non-standard things in the check directory ... OK
 * checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 WARNING, 1 NOTE
+Status: 1 WARNING, 2 NOTEs

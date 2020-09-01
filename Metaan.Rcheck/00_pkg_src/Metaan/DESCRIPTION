@@ -36,7 +36,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: magrittr, stats
 NeedsCompilation: no
-Packaged: 2020-09-01 08:28:29 UTC; antoi
+Packaged: 2020-09-01 09:08:33 UTC; antoi
 Author: Kossi ABALO [aut, cre] (YOUR-ORCID-ID),
   Alex K [aut] (YOUR-ORCID-ID),
   Mark LITTLE [aut] (YOUR-ORCID-ID),
