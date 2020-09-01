@@ -1,0 +1,39 @@
+Package: Metaan
+Type: Package
+Title: Meta-analysis of published epidemiological studies
+Version: 0.1.0
+Authors@R: c(person(given = "Kossi",
+           family = "ABALO",
+           role = c("aut", "cre"),
+           email = "antoine.kossi@hotmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID")),
+    person(given = "Alex",
+          family = "K",
+          role = "aut",
+          email = "antoine.kossi@hotmail.com",
+          comment = c(ORCID = "YOUR-ORCID-ID")),
+    person(given = "Mark",
+          family = "LITTLE",
+          role = "aut",
+          email = "antoine.kossi@hotmail.com",
+          comment = c(ORCID = "YOUR-ORCID-ID")),
+    person(given = "David",
+        family = "RICHARDSON",
+        role = "aut",
+        email = "antoine.kossi@hotmail.com",
+        comment = c(ORCID = "YOUR-ORCID-ID")))
+Description: The package helps combine estimates from published individual studies and provide 
+      a summarized or a pooled estimate of evidence. It makes use of statiscal methods of meta-analysis
+      computation such as the fixed effect model and the random effect model. These methods are ready for 
+      risk estimates (e.g relative risk (RR), odds ratio (OR) and hazard ratio (HR)) meta-analyses but are 
+      improved using the alternative method of Richardson et al. for the computation of 
+      excess relative risk (ERR) estimates metanalyses.
+Depends: R (>= 3.4.3)      
+License: GPL
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    magrittr,
+      stats

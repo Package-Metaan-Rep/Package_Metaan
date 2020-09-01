@@ -1,0 +1,532 @@
+
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "Metaan"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> base::assign(".ExTimings", "Metaan-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('Metaan')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("alpexfix")
+> ### * alpexfix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: alpexfix
+> ### Title: Pooled excess risk estimate using the alternative fixed effect
+> ###   model meta-analysis
+> ### Aliases: alpexfix
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",
++ "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625, 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179, 0.393, 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254, 0.312, 0.996, 0.499, 1.145)
+> dose <- c(32.586, 15.257, 72.431, 6.528, 10.886, 11.659, 17.254, 20.312, 10.996, 30.499,
++ 41.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci, dose))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> donne$dose <- as.numeric(as.character(donne$dose))
+> 
+> alpexfix(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci, d=donne$dose,
++ type = "excess", test = "FIXE")
+                                                   type           err_tot
+1 Alternative proposed approach with fixed effect model 0.647328163332628
+        sd_tot_lnERR             l_tot             u_tot
+1 0.0367743094660716 0.591659305507949 0.707157644264489
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("alpexfix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("alpexrand")
+> ### * alpexrand
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: alpexrand
+> ### Title: Pooled excess risk estimate using the alternative random effect
+> ###   model meta-analysis
+> ### Aliases: alpexrand
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",
++ "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625, 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179, 0.393, 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254, 0.312, 0.996, 0.499, 1.145)
+> dose <- c(32.586, 15.257, 72.431, 6.528, 10.886, 11.659, 17.254, 20.312,
++  10.996, 30.499, 41.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci, dose))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> donne$dose <- as.numeric(as.character(donne$dose))
+> 
+> alpexrand(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci, d=donne$dose,
++ type = "excess", test = "RANDOM")
+                                                    type           err_tot
+1 Alternative proposed approach with random effect model 0.513060580265772
+       sd_tot_lnERR             l_tot             u_tot
+1 0.174854057752254 0.319743212593445 0.785399463117167
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("alpexrand", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("exsens")
+> ### * exsens
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: exsens
+> ### Title: Sensitivity analysis for excess relative risk (ERR) or excess
+> ###   odds ratio (EOR) estimates meta-analysis
+> ### Aliases: exsens
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",
++ "Madanapalle", "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625,
++  0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179,
++ 0.393, 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254, 0.312,
++ 0.996, 0.499, 1.145)
+> dose <- c(32.586, 15.257, 72.431, 6.528, 10.886, 11.659, 17.254, 20.312,
++ 10.996, 30.499, 41.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci, dose))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> donne$dose <- as.numeric(as.character(donne$dose))
+> 
+> exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
++ l=donne$lower_ci, type="excess", test = "FIXE", model = "standard")
+[1] "STANDARD FIXE EFFECT MODEL EXCESS RISK ESTIMATE"
+          Study    RR_tot  SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.3146250 0.02583861 0.2639813 0.3652686
+2         Haiti 0.4242027 0.02456630 0.3760527 0.4723526
+3  South Africa 0.4076889 0.02424337 0.3601718 0.4552059
+4            UK 0.5876457 0.03380632 0.5213853 0.6539061
+5   Madanapalle 0.4065244 0.02414391 0.3592023 0.4538464
+6          Comm 0.4085916 0.02403928 0.3614746 0.4557086
+7        Puerto 0.3833970 0.02510345 0.3341942 0.4325997
+8       Georgia 0.4126883 0.02395057 0.3657451 0.4596314
+9       Chicago 0.4327659 0.02539625 0.3829893 0.4825426
+10 Northern USA 0.4129695 0.02403190 0.3658669 0.4600720
+11       Canada 0.4250772 0.02463585 0.3767910 0.4733635
+> 
+> exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
++ l=donne$lower_ci, type="excess", test = "RANDOM", model = "standard")
+[1] "STANDARD RANDOM EFFECT MODEL EXCESS RISK ESTIMATE"
+          Study    RR_tot  SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4438062 0.08383809 0.2794836 0.6081289
+2         Haiti 0.5740040 0.12749211 0.3241194 0.8238885
+3  South Africa 0.5235712 0.12511800 0.2783399 0.7688025
+4            UK 0.5728867 0.12908969 0.3198710 0.8259025
+5   Madanapalle 0.5061351 0.12285665 0.2653360 0.7469341
+6          Comm 0.4982650 0.12077735 0.2615414 0.7349886
+7        Puerto 0.5117419 0.12744622 0.2619473 0.7615365
+8       Georgia 0.5274042 0.11739372 0.2973125 0.7574959
+9       Chicago 0.5708012 0.13400105 0.3081591 0.8334432
+10 Northern USA 0.5422475 0.12220943 0.3027170 0.7817780
+11       Canada 0.5736784 0.12804767 0.3227050 0.8246519
+> 
+> exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
++ l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXE",
++  model = "alternative")
+[1] "ALTERNATIVE FIXE EFFECT MODEL EXCESS RISK ESTIMATE"
+          Study    RR_tot  SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4325786 0.04977521 0.3781308 0.4926059
+2         Haiti 0.6604284 0.03713479 0.6033139 0.7218551
+3  South Africa 0.6482123 0.03748496 0.5914441 0.7093084
+4            UK 0.7873970 0.04069139 0.7152942 0.8654860
+5   Madanapalle 0.6417552 0.03748607 0.5854428 0.7023609
+6          Comm 0.6400170 0.03725296 0.5841645 0.7001002
+7        Puerto 0.6354133 0.04016693 0.5757100 0.7000068
+8       Georgia 0.6731126 0.04025931 0.6150700 0.7359207
+9       Chicago 0.6749747 0.03768654 0.6160067 0.7384633
+10 Northern USA 0.6496488 0.03692613 0.5935964 0.7099086
+11       Canada 0.6616045 0.03717627 0.6043458 0.7231911
+> 
+> exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
++ l=donne$lower_ci, d=donne$dose, type="excess", test = "RANDOM",
++  model = "alternative")
+[1] "ALTERNATIVE RANDOM EFFECT MODEL EXCESS RISK ESTIMATE"
+          Study    RR_tot SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4655958 0.1627476 0.2965980 0.6980915
+2         Haiti 0.5551911 0.1809315 0.3436951 0.8567097
+3  South Africa 0.5024693 0.1899095 0.2986921 0.7981410
+4            UK 0.5587104 0.1502095 0.3771558 0.8024176
+5   Madanapalle 0.4879740 0.1894283 0.2891189 0.7762320
+6          Comm 0.4780158 0.1863932 0.2848472 0.7563698
+7        Puerto 0.4952574 0.2096797 0.2767353 0.8248507
+8       Georgia 0.4813992 0.1934345 0.3005101 0.7456810
+9       Chicago 0.5503278 0.1820892 0.3391653 0.8520548
+10 Northern USA 0.5214568 0.1825055 0.3185750 0.8115885
+11       Canada 0.5548333 0.1810737 0.3433057 0.8564810
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("exsens", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("pexfix")
+> ### * pexfix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pexfix
+> ### Title: Pooled excess risk estimate using the fixed effect model
+> ###   meta-analysis
+> ### Aliases: pexfix
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",
++ "Madanapalle", "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625,
++ 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179,
++ 0.393, 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254, 0.312,
++ 0.996, 0.499, 1.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> 
+> pexfix(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
++ type = "excess", test = "FIXE")
+                                       type           err_tot
+1 Standard approach wiht fixed effect model 0.412955693378516
+              sd_tot             l_tot             u_tot
+1 0.0239477849298429 0.366018034916024 0.459893351841008
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("pexfix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("pexrand")
+> ### * pexrand
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pexrand
+> ### Title: Pooled excess risk estimate using the random effect model
+> ###   meta-analysis
+> ### Aliases: pexrand
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",
++ "Madanapalle", "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625,
++ 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179,
++ 0.393, 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254, 0.312,
++ 0.996, 0.499, 1.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> 
+> pexrand(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
++ type = "excess", test = "RANDOM")
+                                        type           err_tot
+1 Standard approach with random effect model 0.532837120325755
+             sd_tot             l_tot             u_tot
+1 0.116895818807076 0.303721315463886 0.761952925187624
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("pexrand", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("priskfix")
+> ### * priskfix
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: priskfix
+> ### Title: Pooled risk estimate of a fixed effect model meta-analysis
+> ### Aliases: priskfix
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",
++  "Madanapalle", "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625,
++ 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179, 0.393,
++ 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254,
++ 0.312, 0.996, 0.499, 1.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> 
+> # on the log form
+> donne$ln_risk <- log(donne$Risk)
+> donne$ln_lower_ci <- log(donne$lower_ci)
+> donne$ln_upper_ci <- log(donne$upper_ci)
+> 
+> 
+> priskfix(rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
++ type = "risk", test = "FIXE", form="nonLog")
+                                       type            rr_tot
+1 Standard approach with fixed effect model 0.731495876811882
+         sd_tot_lnRR             l_tot             u_tot
+1 0.0464581215502195 0.667830010321121 0.801231165900276
+> 
+> 
+> priskfix(rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
++ type = "risk", test = "FIXE", form="Log")
+                                       type            rr_tot
+1 Standard approach with fixed effect model 0.731495876811882
+         sd_tot_lnRR             l_tot             u_tot
+1 0.0464581215502195 0.667830010321121 0.801231165900276
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("priskfix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("priskran")
+> ### * priskran
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: priskran
+> ### Title: Pooled risk estimate of a random effect model meta-analysis
+> ### Aliases: priskran
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",
++ "Madanapalle", "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625,
++ 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179, 0.393,
++ 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254,
++ 0.312, 0.996, 0.499, 1.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> 
+> # on the log form
+> donne$ln_risk <- log(donne$Risk)
+> donne$ln_lower_ci <- log(donne$lower_ci)
+> donne$ln_upper_ci <- log(donne$upper_ci)
+> 
+> 
+> priskran(rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
++ type = "risk", test = "RANDOM", form="nonLog")
+                                        type            rr_tot
+1 Standard approach with random effect model 0.508392108632045
+        sd_tot_lnRR             l_tot             u_tot
+1 0.210334680703795 0.336634254593693 0.767784420605956
+> 
+> priskran(rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
++ type = "risk", test = "RANDOM", form="Log")
+                                        type            rr_tot
+1 Standard approach with random effect model 0.508392108632045
+        sd_tot_lnRR             l_tot             u_tot
+1 0.210334680703795 0.336634254593693 0.767784420605956
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("priskran", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("risksens")
+> ### * risksens
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: risksens
+> ### Title: Sensitivity analysis for relative risk meta-analysis
+> ### Aliases: risksens
+> 
+> ### ** Examples
+> 
+> study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",
++ "UK", "South Africa", "Haiti", "Madras")
+> Risk <- c(0.205, 0.411, 0.254, 1.562, 0.712, 0.983, 0.804, 0.237, 0.625, 0.198, 1.012)
+> lower_ci <- c(0.086, 0.134, 0.149, 0.374, 0.573, 0.582, 0.516, 0.179, 0.393, 0.078, 0.895)
+> upper_ci <- c(0.486, 1.257, 0.431, 6.528, 0.886, 1.659, 1.254, 0.312, 0.996,
++ 0.499, 1.145)
+> 
+> donne <- data.frame(cbind(study, Risk, lower_ci, upper_ci))
+> 
+> donne$Risk <- as.numeric(as.character(donne$Risk))
+> donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
+> donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
+> 
+> # on the log form
+> donne$ln_risk <- log(donne$Risk)
+> donne$ln_lower_ci <- log(donne$lower_ci)
+> donne$ln_upper_ci <- log(donne$upper_ci)
+> 
+> risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
++ type="risk", form="Log", test = "FIXE")
+[1] "FIXE EFFECT MODEL RISK ESTIMATE ON LOG SCALE"
+          Study    RR_tot  SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4946437 0.06899258 0.4320806 0.5662656
+2         Haiti 0.7408495 0.04668343 0.6760709 0.8118349
+3  South Africa 0.7361004 0.04737547 0.6708265 0.8077257
+4            UK 0.8377735 0.04917469 0.7607961 0.9225395
+5   Madanapalle 0.7284667 0.04746711 0.6637505 0.7994928
+6          Comm 0.7247891 0.04717658 0.6607758 0.7950037
+7        Puerto 0.7356880 0.05113649 0.6655266 0.8132460
+8       Georgia 0.7292394 0.04655262 0.6656467 0.7989076
+9       Chicago 0.7553106 0.04715644 0.6886289 0.8284494
+10 Northern USA 0.7343107 0.04661262 0.6701969 0.8045579
+11       Canada 0.7419748 0.04671713 0.6770531 0.8131218
+> 
+> risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
++ type="risk", form="Log", test = "RANDOM")
+[1] "RANDOM EFFECT MODEL RISK ESTIMATE ON LOG SCALE"
+          Study    RR_tot SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4649057 0.2173952 0.3036088 0.7118942
+2         Haiti 0.5478402 0.2148664 0.3595472 0.8347411
+3  South Africa 0.4959058 0.2297976 0.3160760 0.7780488
+4            UK 0.5774531 0.1703520 0.4135330 0.8063494
+5   Madanapalle 0.4816945 0.2309180 0.3063447 0.7574134
+6          Comm 0.4727009 0.2271009 0.3028826 0.7377321
+7        Puerto 0.4852122 0.2630357 0.2897552 0.8125165
+8       Georgia 0.4799518 0.2163246 0.3140932 0.7333931
+9       Chicago 0.5489592 0.2147161 0.3603878 0.8361999
+10 Northern USA 0.5155678 0.2184866 0.3359745 0.7911618
+11       Canada 0.5485480 0.2149974 0.3599193 0.8360345
+> 
+> risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
++ type="risk", form="nonLog", test = "FIXE")
+[1] "FIXE EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE"
+          Study    RR_tot  SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4946437 0.06899258 0.4320806 0.5662656
+2         Haiti 0.7408495 0.04668343 0.6760709 0.8118349
+3  South Africa 0.7361004 0.04737547 0.6708265 0.8077257
+4            UK 0.8377735 0.04917469 0.7607961 0.9225395
+5   Madanapalle 0.7284667 0.04746711 0.6637505 0.7994928
+6          Comm 0.7247891 0.04717658 0.6607758 0.7950037
+7        Puerto 0.7356880 0.05113649 0.6655266 0.8132460
+8       Georgia 0.7292394 0.04655262 0.6656467 0.7989076
+9       Chicago 0.7553106 0.04715644 0.6886289 0.8284494
+10 Northern USA 0.7343107 0.04661262 0.6701969 0.8045579
+11       Canada 0.7419748 0.04671713 0.6770531 0.8131218
+> 
+> risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
++ type="risk", form="nonLog", test = "RANDOM")
+[1] "RANDOM EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE"
+          Study    RR_tot SE_log_RR  Lower_CI  Upper_CI
+1        Madras 0.4649057 0.2173952 0.3036088 0.7118942
+2         Haiti 0.5478402 0.2148664 0.3595472 0.8347411
+3  South Africa 0.4959058 0.2297976 0.3160760 0.7780488
+4            UK 0.5774531 0.1703520 0.4135330 0.8063494
+5   Madanapalle 0.4816945 0.2309180 0.3063447 0.7574134
+6          Comm 0.4727009 0.2271009 0.3028826 0.7377321
+7        Puerto 0.4852122 0.2630357 0.2897552 0.8125165
+8       Georgia 0.4799518 0.2163246 0.3140932 0.7333931
+9       Chicago 0.5489592 0.2147161 0.3603878 0.8361999
+10 Northern USA 0.5155678 0.2184866 0.3359745 0.7911618
+11       Canada 0.5485480 0.2149974 0.3599193 0.8360345
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("risksens", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  0.37 0.06 0.51 NA NA 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

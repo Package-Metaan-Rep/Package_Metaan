@@ -1,0 +1,20 @@
+IHD                     IHD dataset
+I_square                Test of heterogeneity
+Tuberculosis            Tuberculosis dataset
+alpexfix                Pooled excess risk estimate using the
+                        alternative fixed effect model meta-analysis
+alpexrand               Pooled excess risk estimate using the
+                        alternative random effect model meta-analysis
+exsens                  Sensitivity analysis for excess relative risk
+                        (ERR) or excess odds ratio (EOR) estimates
+                        meta-analysis
+pexfix                  Pooled excess risk estimate using the fixed
+                        effect model meta-analysis
+pexrand                 Pooled excess risk estimate using the random
+                        effect model meta-analysis
+priskfix                Pooled risk estimate of a fixed effect model
+                        meta-analysis
+priskran                Pooled risk estimate of a random effect model
+                        meta-analysis
+risksens                Sensitivity analysis for relative risk
+                        meta-analysis

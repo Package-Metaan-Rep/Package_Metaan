@@ -1,0 +1,18 @@
+#' Tuberculosis dataset
+#'
+#' A dataset of the meta-analysis of of the effect of BCG vaccine on incidence
+#' of tuberculosis.
+#'
+#' @format A data frame with 11 rows and 5 variables:
+#' \describe{
+#'   \item{study}{Places where the studies took place}
+#'   \item{authors}{Authors of the studies}
+#'   \item{years}{Year in which the study started}
+#'   \item{Risk}{Value of the risk reported from the study}
+#'   \item{lower_ci}{Value of the lower confidence interval of the risk reported from the study}
+#'   \item{upper_ci}{Value of the upper confidence interval of the risk reported from the study}
+#'   ...
+#' }
+#' @references Sterne JA (2009) Meta-analysis in Stata: an updated collection from the Stata Journal. StataCorp LP, College Station, Texas
+"Tuberculosis"
+
