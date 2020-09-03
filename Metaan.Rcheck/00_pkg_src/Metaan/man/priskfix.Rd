@@ -2,16 +2,16 @@
 % Please edit documentation in R/priskfix.R
 \name{priskfix}
 \alias{priskfix}
-\title{Pooled risk estimate of a fixed effect model meta-analysis}
+\title{Pooled risk estimate using the fixed effect model meta-analysis}
 \usage{
 priskfix(rr, u, l, form = c("Log", "nonLog"), type = "risk", test = "FIXE")
 }
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
 
-\item{l}{A numeric vector of the lower confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
 
 \item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.}
 

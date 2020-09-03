@@ -2,16 +2,16 @@
 % Please edit documentation in R/priskran.R
 \name{priskran}
 \alias{priskran}
-\title{Pooled risk estimate of a random effect model meta-analysis}
+\title{Pooled risk estimate using the random effect model meta-analysis}
 \usage{
 priskran(rr, u, l, form = c("Log", "nonLog"), type = "risk", test = "RANDOM")
 }
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
 
-\item{l}{A numeric vector of the lower confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
 
 \item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.}
 

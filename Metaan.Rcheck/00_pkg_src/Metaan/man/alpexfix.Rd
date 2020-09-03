@@ -9,9 +9,9 @@ alpexfix(err, u, l, d, type = "excess", test = "FIXE")
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
 
-\item{l}{A numeric vector of the lower confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
 
 \item{d}{A numeric vector of the maximum dose reported from the individual studies.}
 

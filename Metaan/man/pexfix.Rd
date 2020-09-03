@@ -9,9 +9,9 @@ pexfix(err, u, l, type = "excess", test = "FIXE")
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
 
-\item{l}{A numeric vector of the lower confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
 
 \item{type}{Logical indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.}
 

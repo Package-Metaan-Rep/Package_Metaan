@@ -228,7 +228,7 @@ flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: priskfix
-### Title: Pooled risk estimate of a fixed effect model meta-analysis
+### Title: Pooled risk estimate using the fixed effect model meta-analysis
 ### Aliases: priskfix
 
 ### ** Examples
@@ -275,7 +275,7 @@ flush(stderr()); flush(stdout())
 
 base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: priskran
-### Title: Pooled risk estimate of a random effect model meta-analysis
+### Title: Pooled risk estimate using the random effect model meta-analysis
 ### Aliases: priskran
 
 ### ** Examples

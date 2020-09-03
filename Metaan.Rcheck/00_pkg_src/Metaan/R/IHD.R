@@ -7,8 +7,10 @@
 #' \describe{
 #'   \item{study}{Authors and date the study}
 #'   \item{err}{Value of the excess relative risk (err) reported from the study}
-#'   \item{lower_ci}{Value of the lower confidence interval of the risk reported from the study}
-#'   \item{upper_ci}{Value of the upper confidence interval of the risk reported from the study}
+#'   \item{lower_ci}{Value of the lower bound of the confidence interval of the
+#'   risk reported from the study}
+#'   \item{upper_ci}{Value of the upper bound of the confidence interval of
+#'   the risk reported from the study}
 #'   \item{max_dose}{Value of the maximum dose reported from the study}
 #'   ...
 #' }

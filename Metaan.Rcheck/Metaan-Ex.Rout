@@ -315,7 +315,7 @@ Type 'q()' to quit R.
 > 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: priskfix
-> ### Title: Pooled risk estimate of a fixed effect model meta-analysis
+> ### Title: Pooled risk estimate using the fixed effect model meta-analysis
 > ### Aliases: priskfix
 > 
 > ### ** Examples
@@ -370,7 +370,7 @@ Type 'q()' to quit R.
 > 
 > base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 > ### Name: priskran
-> ### Title: Pooled risk estimate of a random effect model meta-analysis
+> ### Title: Pooled risk estimate using the random effect model meta-analysis
 > ### Aliases: priskran
 > 
 > ### ** Examples
@@ -520,7 +520,7 @@ Type 'q()' to quit R.
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  0.36 0.03 0.44 NA NA 
+Time elapsed:  0.32 0.01 0.38 NA NA 
 > grDevices::dev.off()
 null device 
           1 

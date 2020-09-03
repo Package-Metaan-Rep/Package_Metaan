@@ -3,9 +3,9 @@
 #' @description Alternative fixed effect model for alternative meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
 #'
 #' @param err A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower confidence interval of the risk estimated from the individual studies.
-#' @param d A numeric vector of the upper confidence interval of the maximum dose reported from the individual studies.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
+#' @param d A numeric vector of the maximum dose reported from the individual studies.
 #' @param type Logical indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.
 #' @param test Logical indicating the statistical method to be used. The default is "RANDOM" for the random effect model.
 #'

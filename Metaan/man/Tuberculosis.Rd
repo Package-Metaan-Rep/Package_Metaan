@@ -20,7 +20,7 @@ A data frame with 11 rows and 5 variables:
 Tuberculosis
 }
 \description{
-A dataset of the meta-analysis of of the effect of BCG vaccine on incidence
+A dataset for the meta-analysis of the effect of BCG vaccine on incidence
 of tuberculosis.
 }
 \references{

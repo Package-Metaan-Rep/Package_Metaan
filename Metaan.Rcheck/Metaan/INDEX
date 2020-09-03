@@ -12,9 +12,9 @@ pexfix                  Pooled excess risk estimate using the fixed
                         effect model meta-analysis
 pexrand                 Pooled excess risk estimate using the random
                         effect model meta-analysis
-priskfix                Pooled risk estimate of a fixed effect model
-                        meta-analysis
-priskran                Pooled risk estimate of a random effect model
-                        meta-analysis
+priskfix                Pooled risk estimate using the fixed effect
+                        model meta-analysis
+priskran                Pooled risk estimate using the random effect
+                        model meta-analysis
 risksens                Sensitivity analysis for relative risk
                         meta-analysis
