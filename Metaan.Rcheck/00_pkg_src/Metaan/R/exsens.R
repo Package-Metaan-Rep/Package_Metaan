@@ -75,7 +75,8 @@ exsens <- function(study, err, u, l, d=NULL,
       class(sensitivity$Lower_CI) <- "numeric"
       class(sensitivity$Upper_CI) <- "numeric"
       #print(sensitivity)
-      print("STANDARD FIXE EFFECT MODEL EXCESS RISK ESTIMATE")
+      #print("STANDARD FIXE EFFECT MODEL EXCESS RISK ESTIMATE")
+      message("STANDARD FIXED EFFECT MODEL EXCESS RISK ESTIMATE")
 
     }else{
 
@@ -98,7 +99,8 @@ exsens <- function(study, err, u, l, d=NULL,
           class(sensitivity$Lower_CI) <- "numeric"
           class(sensitivity$Upper_CI) <- "numeric"
           #print(sensitivity)
-          print("ALTERNATIVE FIXE EFFECT MODEL EXCESS RISK ESTIMATE")
+          #print("ALTERNATIVE FIXE EFFECT MODEL EXCESS RISK ESTIMATE")
+          message("ALTERNATIVE FIXED EFFECT MODEL EXCESS RISK ESTIMATE")
 
         }
       }
@@ -118,7 +120,8 @@ exsens <- function(study, err, u, l, d=NULL,
       class(sensitivity$Lower_CI) <- "numeric"
       class(sensitivity$Upper_CI) <- "numeric"
       #print(sensitivity)
-      print("STANDARD RANDOM EFFECT MODEL EXCESS RISK ESTIMATE")
+      #print("STANDARD RANDOM EFFECT MODEL EXCESS RISK ESTIMATE")
+      message("STANDARD RANDOM EFFECT MODEL EXCESS RISK ESTIMATE")
 
     }else{
 
@@ -141,7 +144,8 @@ exsens <- function(study, err, u, l, d=NULL,
           class(sensitivity$Lower_CI) <- "numeric"
           class(sensitivity$Upper_CI) <- "numeric"
           #print(sensitivity)
-          print("ALTERNATIVE RANDOM EFFECT MODEL EXCESS RISK ESTIMATE")
+          #print("ALTERNATIVE RANDOM EFFECT MODEL EXCESS RISK ESTIMATE")
+          message("ALTERNATIVE RANDOM EFFECT MODEL EXCESS RISK ESTIMATE")
         }
 
       }

@@ -68,7 +68,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
       sensitivity$Lower_CI<-as.numeric(as.character(sensitivity$Lower_CI))
       sensitivity$Upper_CI<-as.numeric(as.character(sensitivity$Upper_CI))
       #print(sensitivity)
-      print("FIXE EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
+      #print("FIXE EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
+      message("FIXED EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
 
     }else{
 
@@ -86,7 +87,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
         sensitivity$Lower_CI<-as.numeric(as.character(sensitivity$Lower_CI))
         sensitivity$Upper_CI<-as.numeric(as.character(sensitivity$Upper_CI))
         #print(sensitivity)
-        print("FIXE EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
+        #print("FIXE EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
+        message("FIXED EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
 
       }
     }
@@ -107,7 +109,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
       sensitivity$Lower_CI<-as.numeric(as.character(sensitivity$Lower_CI))
       sensitivity$Upper_CI<-as.numeric(as.character(sensitivity$Upper_CI))
       #print(sensitivity)
-      print("RANDOM EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
+      #print("RANDOM EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
+      message("RANDOM EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
 
     }else{
 
@@ -125,7 +128,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
         sensitivity$Lower_CI<-as.numeric(as.character(sensitivity$Lower_CI))
         sensitivity$Upper_CI<-as.numeric(as.character(sensitivity$Upper_CI))
         #print(sensitivity)
-        print("RANDOM EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
+        #print("RANDOM EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
+        message("RANDOM EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
 
       }
 

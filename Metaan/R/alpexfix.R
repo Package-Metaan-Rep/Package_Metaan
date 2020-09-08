@@ -37,7 +37,7 @@
 #' @export
 #'
 alpexfix <- function(err, u, l, d,
-                     type="excess", test="FIXE"){
+                     type="excess", test="FIXED"){
   C = min(d, na.rm=T)
   A = log(C*err+1)
   sd_A = log((C*u+1)/(C*l+1))/(2*1.96)

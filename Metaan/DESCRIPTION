@@ -1,17 +1,17 @@
 Package: Metaan
 Type: Package
-Title: Meta-analysis of published epidemiological studies
+Title: Meta-analysis of Published Epidemiological Studies
 Version: 0.1.0
 Authors@R: c(person(given = "Kossi",
            family = "ABALO",
            role = c("aut", "cre"),
            email = "antoine.kossi@hotmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID")),
-    person(given = "Alex",
-          family = "K",
+    person(given = "Alexander",
+          family = "Keil",
           role = "aut",
-          email = "antoine.kossi@hotmail.com",
-          comment = c(ORCID = "YOUR-ORCID-ID")),
+          email = "akeil@unc.edu",
+          comment = c(ORCID = "0000-0002-0955-6107")),
     person(given = "Mark",
           family = "LITTLE",
           role = "aut",
