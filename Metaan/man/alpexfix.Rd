@@ -4,7 +4,7 @@
 \alias{alpexfix}
 \title{Pooled excess risk estimate using the alternative fixed effect model meta-analysis}
 \usage{
-alpexfix(err, u, l, d, type = "excess", test = "FIXE")
+alpexfix(err, u, l, d, type = "excess", test = "FIXED")
 }
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}

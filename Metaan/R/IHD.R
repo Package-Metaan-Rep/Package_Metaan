@@ -5,7 +5,7 @@
 #'
 #' @format A data frame with 8 rows and 5 variables:
 #' \describe{
-#'   \item{study}{Authors and date the study}
+#'   \item{Study}{Authors and date the study}
 #'   \item{err}{Value of the excess relative risk (err) reported from the study}
 #'   \item{lower_ci}{Value of the lower bound of the confidence interval of the
 #'   risk reported from the study}
