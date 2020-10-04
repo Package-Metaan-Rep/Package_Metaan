@@ -2,18 +2,6 @@ pkgname <- "Metaan"
 source(file.path(R.home("share"), "R", "examples-header.R"))
 options(warn = 1)
 options(pager = "console")
-base::assign(".ExTimings", "Metaan-Ex.timings", pos = 'CheckExEnv')
-base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
-base::assign(".format_ptime",
-function(x) {
-  if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
-  if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
-  options(OutDec = '.')
-  format(x[1L:3L], digits = 7L)
-},
-pos = 'CheckExEnv')
-
-### * </HEADER>
 library('Metaan')
 
 base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
@@ -24,7 +12,6 @@ nameEx("alpexfix")
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: alpexfix
 ### Title: Pooled excess risk estimate using the alternative fixed effect
 ###   model meta-analysis
@@ -54,15 +41,12 @@ type = "excess", test = "FIXE")
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("alpexfix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("alpexrand")
 ### * alpexrand
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: alpexrand
 ### Title: Pooled excess risk estimate using the alternative random effect
 ###   model meta-analysis
@@ -86,20 +70,17 @@ donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 donne$dose <- as.numeric(as.character(donne$dose))
 
 alpexrand(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci, d=donne$dose,
-type = "excess", test = "RANDOM")
+type = "excess", test = "RANDOM", conf.level=0.95)
 
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("alpexrand", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("exsens")
 ### * exsens
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: exsens
 ### Title: Sensitivity analysis for excess relative risk (ERR) or excess
 ###   odds ratio (EOR) estimates meta-analysis
@@ -126,13 +107,13 @@ donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 donne$dose <- as.numeric(as.character(donne$dose))
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
-l=donne$lower_ci, type="excess", test = "FIXE", model = "standard")
+l=donne$lower_ci, type="excess", test = "FIXED", model = "standard")
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
 l=donne$lower_ci, type="excess", test = "RANDOM", model = "standard")
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
-l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXE",
+l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXED",
  model = "alternative")
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
@@ -143,15 +124,12 @@ l=donne$lower_ci, d=donne$dose, type="excess", test = "RANDOM",
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("exsens", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("pexfix")
 ### * pexfix
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: pexfix
 ### Title: Pooled excess risk estimate using the fixed effect model
 ###   meta-analysis
@@ -175,21 +153,18 @@ donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
 donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 
 pexfix(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "excess", test = "FIXE")
+type = "excess", test = "FIXED", conf.level=0.95)
 
 
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("pexfix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("pexrand")
 ### * pexrand
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: pexrand
 ### Title: Pooled excess risk estimate using the random effect model
 ###   meta-analysis
@@ -213,20 +188,17 @@ donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
 donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 
 pexrand(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "excess", test = "RANDOM")
+type = "excess", test = "RANDOM", conf.level=0.95)
 
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("pexrand", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("priskfix")
 ### * priskfix
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: priskfix
 ### Title: Pooled risk estimate using the fixed effect model meta-analysis
 ### Aliases: priskfix
@@ -255,25 +227,24 @@ donne$ln_upper_ci <- log(donne$upper_ci)
 
 
 priskfix(rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "risk", test = "FIXE", form="nonLog")
+type = "risk", test = "FIXE", form="nonLog", conf.level=0.95)
 
 
 priskfix(rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-type = "risk", test = "FIXE", form="Log")
+type = "risk", test = "FIXE", form="Log", conf.level=0.95)
 
 
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("priskfix", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+
+
 cleanEx()
 nameEx("priskran")
 ### * priskran
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: priskran
 ### Title: Pooled risk estimate using the random effect model meta-analysis
 ### Aliases: priskran
@@ -302,23 +273,20 @@ donne$ln_upper_ci <- log(donne$upper_ci)
 
 
 priskran(rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "risk", test = "RANDOM", form="nonLog")
+type = "risk", test = "RANDOM", form="nonLog", conf.level=0.95)
 
 priskran(rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-type = "risk", test = "RANDOM", form="Log")
+type = "risk", test = "RANDOM", form="Log", conf.level=0.95)
 
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("priskran", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 cleanEx()
 nameEx("risksens")
 ### * risksens
 
 flush(stderr()); flush(stdout())
 
-base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 ### Name: risksens
 ### Title: Sensitivity analysis for relative risk meta-analysis
 ### Aliases: risksens
@@ -344,13 +312,13 @@ donne$ln_lower_ci <- log(donne$lower_ci)
 donne$ln_upper_ci <- log(donne$upper_ci)
 
 risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-type="risk", form="Log", test = "FIXE")
+type="risk", form="Log", test = "FIXED")
 
 risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
 type="risk", form="Log", test = "RANDOM")
 
 risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type="risk", form="nonLog", test = "FIXE")
+type="risk", form="nonLog", test = "FIXED")
 
 risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
 type="risk", form="nonLog", test = "RANDOM")
@@ -358,8 +326,6 @@ type="risk", form="nonLog", test = "RANDOM")
 
 
 
-base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
-base::cat("risksens", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
 ### * <FOOTER>
 ###
 cleanEx()

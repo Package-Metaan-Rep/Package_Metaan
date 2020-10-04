@@ -11,7 +11,7 @@ risksens(
   l,
   form = c("Log", "nonLog"),
   type = "risk",
-  test = c("FIXE", "RANDOM")
+  test = c("FIXED", "RANDOM")
 )
 }
 \arguments{
@@ -57,13 +57,13 @@ donne$ln_lower_ci <- log(donne$lower_ci)
 donne$ln_upper_ci <- log(donne$upper_ci)
 
 risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-type="risk", form="Log", test = "FIXE")
+type="risk", form="Log", test = "FIXED")
 
 risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
 type="risk", form="Log", test = "RANDOM")
 
 risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type="risk", form="nonLog", test = "FIXE")
+type="risk", form="nonLog", test = "FIXED")
 
 risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
 type="risk", form="nonLog", test = "RANDOM")

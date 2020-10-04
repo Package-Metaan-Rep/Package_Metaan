@@ -1,10 +1,16 @@
 alpexfix	alpexfix
 alpexrand	alpexrand
 exsens	exsens
+hetest	hetest
 IHD	IHD
-I_square	I_square
 pexfix	pexfix
 pexrand	pexrand
+print.metaan.ara	metaan.ara
+print.metaan.arf	metaan.arf
+print.metaan.era	metaan.era
+print.metaan.erf	metaan.erf
+print.metaan.ra	metaan.ra
+print.metaan.rr	metaan.rr
 priskfix	priskfix
 priskran	priskran
 risksens	risksens

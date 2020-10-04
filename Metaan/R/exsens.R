@@ -37,13 +37,13 @@
 #' donne$dose <- as.numeric(as.character(donne$dose))
 #'
 #' exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
-#' l=donne$lower_ci, type="excess", test = "FIXE", model = "standard")
+#' l=donne$lower_ci, type="excess", test = "FIXED", model = "standard")
 #'
 #' exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
 #' l=donne$lower_ci, type="excess", test = "RANDOM", model = "standard")
 #'
 #' exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
-#' l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXE",
+#' l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXED",
 #'  model = "alternative")
 #'
 #' exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
@@ -55,32 +55,34 @@
 #'
 #'
 exsens <- function(study, err, u, l, d=NULL,
-                   type="excess", test = c("FIXE", "RANDOM"), model=c("standard", "alternative")){
+                   type="excess", test = c("FIXED", "RANDOM"), model=c("standard", "alternative")){
 
   if(missing(test) | missing(model)){
     stop("Arguments test and model should be provided")
   }else{
 
-    if(test=="FIXE" & model=="standard"){
+    if(test=="FIXED" & model=="standard"){
       sensitivity <- NULL
       for (i in 1:length(study)) {
-        df <- pexfix(err=err[-i], u=u[-i], l=l[-i], type="excess", test="FIXE")
 
+        sens <- pexfix(err=err[-i], u=u[-i], l=l[-i], type="excess", test="FIXED")
+        df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
-        sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+        sensitivity <- rbind(df[ , 1:5], sensitivity)
+
+        #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
       }  # End of For loop
       colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
       class(sensitivity$RR_tot) <- "numeric"
       class(sensitivity$SE_log_RR) <- "numeric"
       class(sensitivity$Lower_CI) <- "numeric"
       class(sensitivity$Upper_CI) <- "numeric"
-      #print(sensitivity)
-      #print("STANDARD FIXE EFFECT MODEL EXCESS RISK ESTIMATE")
+
       message("STANDARD FIXED EFFECT MODEL EXCESS RISK ESTIMATE")
 
     }else{
 
-      if(test=="FIXE" & model=="alternative"){
+      if(test=="FIXED" & model=="alternative"){
         if(is.null(d)){
           stop("With the alternative model, d should not be null. Provide a non-null value for d")
 
@@ -88,10 +90,13 @@ exsens <- function(study, err, u, l, d=NULL,
 
           sensitivity <- NULL
           for (i in 1:length(study)) {
-            df <- alpexfix(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess", test="FIXE")
 
+            sens <- alpexfix(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess", test="FIXED")
+            df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
             df <- cbind(study[i], df)
-            sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+            sensitivity <- rbind(df[ , 1:5], sensitivity)
+
+            #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
           }  # End of For loop
           colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
           class(sensitivity$RR_tot) <- "numeric"
@@ -99,7 +104,7 @@ exsens <- function(study, err, u, l, d=NULL,
           class(sensitivity$Lower_CI) <- "numeric"
           class(sensitivity$Upper_CI) <- "numeric"
           #print(sensitivity)
-          #print("ALTERNATIVE FIXE EFFECT MODEL EXCESS RISK ESTIMATE")
+          #print("ALTERNATIVE FIXED EFFECT MODEL EXCESS RISK ESTIMATE")
           message("ALTERNATIVE FIXED EFFECT MODEL EXCESS RISK ESTIMATE")
 
         }
@@ -109,10 +114,13 @@ exsens <- function(study, err, u, l, d=NULL,
     if(test=="RANDOM" & model=="standard"){
       sensitivity <- NULL
       for (i in 1:length(study)) {
-        df <- pexrand(err=err[-i], u=u[-i], l=l[-i], type="excess", test="RANDOM")
 
+        sens <- pexrand(err=err[-i], u=u[-i], l=l[-i], type="excess", test="RANDOM")
+        df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
-        sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+        sensitivity <- rbind(df[ , 1:5], sensitivity)
+
+        #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
       }  # End of For loop
       colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
       class(sensitivity$RR_tot) <- "numeric"
@@ -133,10 +141,13 @@ exsens <- function(study, err, u, l, d=NULL,
 
           sensitivity <- NULL
           for (i in 1:length(study)) {
-            df <- alpexrand(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess", test="FIXE")
 
+            sens <- alpexrand(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess", test="RANDOM")
+            df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
             df <- cbind(study[i], df)
-            sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+            sensitivity <- rbind(df[ , 1:5], sensitivity)
+
+            #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
           }  # End of For loop
           colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
           class(sensitivity$RR_tot) <- "numeric"

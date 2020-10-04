@@ -4,7 +4,15 @@
 \alias{priskfix}
 \title{Pooled risk estimate using the fixed effect model meta-analysis}
 \usage{
-priskfix(rr, u, l, form = c("Log", "nonLog"), type = "risk", test = "FIXE")
+priskfix(
+  rr,
+  u,
+  l,
+  form = c("Log", "nonLog"),
+  type = "risk",
+  test = "FIXED",
+  conf.level = 0.95
+)
 }
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
@@ -17,7 +25,9 @@ priskfix(rr, u, l, form = c("Log", "nonLog"), type = "risk", test = "FIXE")
 
 \item{type}{Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
 
-\item{test}{Logical indicating the statistical method to be used. The default if FIXE for the fixe effect model.}
+\item{test}{Logical indicating the statistical method to be used. The default if FIXE for the fixed effect model.}
+
+\item{conf.level}{Coverage for confidence intervals}
 }
 \value{
 A list of a pooled result from the individual studies
@@ -48,11 +58,13 @@ donne$ln_upper_ci <- log(donne$upper_ci)
 
 
 priskfix(rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "risk", test = "FIXE", form="nonLog")
+type = "risk", test = "FIXE", form="nonLog", conf.level=0.95)
 
 
 priskfix(rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-type = "risk", test = "FIXE", form="Log")
+type = "risk", test = "FIXE", form="Log", conf.level=0.95)
+
+
 
 
 }

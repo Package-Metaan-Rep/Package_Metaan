@@ -1,26 +1,26 @@
 Package: Metaan
 Type: Package
-Title: Meta-analysis of published epidemiological studies
+Title: Meta-analysis of Published Epidemiological Studies
 Version: 0.1.0
 Authors@R: c(person(given = "Kossi",
-           family = "ABALO",
+           family = "Abalo",
            role = c("aut", "cre"),
            email = "antoine.kossi@hotmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
-    person(given = "Alex",
-          family = "K",
+           comment = c(ORCID = "0000-0001-5064-0215")),
+    person(given = "Alexander",
+          family = "Keil",
           role = "aut",
-          email = "antoine.kossi@hotmail.com",
-          comment = c(ORCID = "YOUR-ORCID-ID")),
+          email = "akeil@unc.edu",
+          comment = c(ORCID = "0000-0002-0955-6107")),
     person(given = "Mark",
-          family = "LITTLE",
+          family = "Little",
           role = "aut",
-          email = "antoine.kossi@hotmail.com",
+          email = "mark.little@nih.gov",
           comment = c(ORCID = "YOUR-ORCID-ID")),
     person(given = "David",
-        family = "RICHARDSON",
+        family = "Richardson",
         role = "aut",
-        email = "antoine.kossi@hotmail.com",
+        email = "david.richardson@unc.edu",
         comment = c(ORCID = "YOUR-ORCID-ID")))
 Description: The package helps combine estimates from published individual studies and provide 
       a summarized or a pooled estimate of evidence. It makes use of statiscal methods of meta-analysis
@@ -36,9 +36,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: magrittr, stats
 NeedsCompilation: no
-Packaged: 2020-09-03 21:19:53 UTC; antoi
-Author: Kossi ABALO [aut, cre] (YOUR-ORCID-ID),
-  Alex K [aut] (YOUR-ORCID-ID),
-  Mark LITTLE [aut] (YOUR-ORCID-ID),
-  David RICHARDSON [aut] (YOUR-ORCID-ID)
-Maintainer: Kossi ABALO <antoine.kossi@hotmail.com>
+Packaged: 2020-10-04 20:28:42 UTC; antoi
+Author: Kossi Abalo [aut, cre] (<https://orcid.org/0000-0001-5064-0215>),
+  Alexander Keil [aut] (<https://orcid.org/0000-0002-0955-6107>),
+  Mark Little [aut] (YOUR-ORCID-ID),
+  David Richardson [aut] (YOUR-ORCID-ID)
+Maintainer: Kossi Abalo <antoine.kossi@hotmail.com>
