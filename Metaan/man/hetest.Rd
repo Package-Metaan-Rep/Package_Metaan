@@ -9,12 +9,12 @@ hetest(rr, u, l, form = c("Log", "nonLog"))
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.}
+\item{form}{Logical, indicating the scale of the data. If Log, then the original data are in logarithmic scale.}
 }
 \description{
-Cochrane Q statistic and I_square computation in meta-analysis
+Cochrane's Q statistic and I square computation in meta-analysis
 }

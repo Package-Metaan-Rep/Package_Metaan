@@ -9,20 +9,20 @@ alpexrand(err, u, l, d, type = "excess", test = "FIXED", conf.level = 0.95)
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.}
 
 \item{d}{A numeric vector of the maximum dose reported from the individual studies.}
 
-\item{type}{Logical indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.}
+\item{type}{Logical, indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.}
 
-\item{test}{Logical indicating the statistical method to be used. The default is "RANDOM" for the random effect model.}
+\item{test}{Logical, indicating the statistical method to be used. The default is "RANDOM" for the random effect model.}
 
-\item{conf.level}{Coverage for confidence intervals}
+\item{conf.level}{Coverage for confidence interval}
 }
 \description{
-Alternative fixed effect model for alternative meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
+DerSimonian and Laird-based random effect meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates with Richardson et al 2020 alternative model.
 }
 \examples{
 study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",

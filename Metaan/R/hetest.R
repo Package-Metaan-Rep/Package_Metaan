@@ -1,10 +1,10 @@
 #' @title Test of heterogeneity
-#' @description Cochrane Q statistic and I_square computation in meta-analysis
+#' @description Cochrane's Q statistic and I square computation in meta-analysis
 #'
 #' @param rr A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
-#' @param form Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.
+#' @param form Logical, indicating the scale of the data. If Log, then the original data are in logarithmic scale.
 #'
 #'
 #' @export

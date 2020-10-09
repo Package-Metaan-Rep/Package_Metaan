@@ -40,7 +40,7 @@ devtools::check(cran=TRUE) # also in Rhub with different ids (RHUB will send off
 
 # remote check on different platforms
 platforms = c("windows-x86_64-devel", "ubuntu-gcc-release", "fedora-clang-devel", "macos-highsierra-release")
-rhub::check_for_cran(email="akeil@unc.edu", platforms = platforms[-1], show_status=FALSE) # from rhub, checks windows, ubuntu, fedora,mac
+rhub::check_for_cran(email="antoine.kossi@hotmail.com", platforms = platforms[-1], show_status=FALSE) # from rhub, checks windows, ubuntu, fedora,mac
 # results will be emailed to you in 20mins to several hours
 
 

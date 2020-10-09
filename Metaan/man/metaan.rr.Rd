@@ -15,5 +15,5 @@
 
 }
 \description{
-Fixed effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) and hazard ratio (HR))
+Fixed effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR))
 }

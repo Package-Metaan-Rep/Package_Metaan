@@ -1,17 +1,25 @@
-#' @title Sensitivity analysis for relative risk meta-analysis
-#' @description Fixed or Random effect model could be used for the sensitivity analysis computation.
-#' @description The risk estimate could be e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR)
+#' @title Sensitivity analysis for relative risk (or odds ratio) meta-analysis
+#' @description Fixed or Random effect model could be used for the sensitivity analysis computation. The
+#'  risk estimate could be e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR).
 #'
-#' @param study A character vector of the name of the individual studies
+#' @description In the sensitivity analysis, each individual study is removed one at a time and the
+#'  summarized estimate is computed to access the effect of the removed study on the overall pooled estimate.
+#'
+#'
+#' @param study A vector (or column for dataframe, matrix) specifying the column reporting the author's name or the individual study's name
 #' @param rr A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower confidence interval of the risk estimated from the individual studies.
-#' @param form Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.
-#' @param type Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.
-#' @param test Logical indicating the statistical method to be used.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
+#' @param form Logical, indicating the scale of the data. If Log, then the original data are in logarithmic scale.
+#' @param type Logical, indicating the method to be used. The default is risk indicating that risk estimate model should be used.
+#' @param test Logical, indicating the statistical method to be used. The user have the choice between "FIXED" for the fixed effect model, and "RANDOM" for the random effect model.
+#' @param conf.level Coverage for confidence interval
 #'
-#' @return A dataframe of a pooled result from the individual studies
 #'
+#' @return A dataframe of a pooled result from the individual studies where
+#'
+#'
+#' @author Kossi Abalo
 #'
 #' @examples
 #' study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",
@@ -47,7 +55,12 @@
 #' @export
 #'
 risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
-                     type="risk", test = c("FIXED", "RANDOM")){
+                     type="risk", test = c("FIXED", "RANDOM"), conf.level=0.95){
+
+
+  if (conf.level>1 & conf.level<100)
+    conf.level<-conf.level/100
+
 
   if(missing(test) | missing(form)){
     stop("Arguments test and form should be provided")
@@ -57,7 +70,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
       sensitivity <- NULL
       for (i in 1:length(study)) {
 
-        sens <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="Log", type="risk", test="FIXED")
+        sens <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="Log",
+                         type="risk", test="FIXED", conf.level=conf.level)
 
         df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
@@ -80,7 +94,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
         for (i in 1:length(study)) {
 
 
-          sens <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="nonLog", type="risk", test="FIXED")
+          sens <- priskfix(rr=rr[-i], u=u[-i], l=l[-i],
+                           form="nonLog", type="risk", test="FIXED", conf.level=conf.level)
 
           df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
           df <- cbind(study[i], df)
@@ -105,7 +120,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
       sensitivity <- NULL
       for (i in 1:length(study)) {
 
-        sens <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="Log", type="risk", test="RANDOM")
+        sens <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="Log",
+                         type="risk", test="RANDOM", conf.level=conf.level)
         df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
         sensitivity <- rbind(df[ , 1:5], sensitivity)
@@ -127,7 +143,8 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
         for (i in 1:length(study)) {
 
 
-          sens <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="nonLog", type="risk", test="RANDOM")
+          sens <- priskran(rr=rr[-i], u=u[-i], l=l[-i],
+                           form="nonLog", type="risk", test="RANDOM", conf.level=conf.level)
           df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
           df <- cbind(study[i], df)
           sensitivity <- rbind(df[ , 1:5], sensitivity)
@@ -149,7 +166,9 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
 
 
   }# End of else
-  sensitivity
+  result = sensitivity
+  colnames(result) = c("Study", "Effect", "SE Log(Effect)", "Lower CI", "Upper CI")
+  result
 
 }# End of the function
 

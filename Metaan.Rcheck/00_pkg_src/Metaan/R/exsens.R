@@ -1,19 +1,23 @@
 #' @title Sensitivity analysis for excess relative risk (ERR) or excess odds ratio (EOR) estimates meta-analysis
-#' @description Fixed or Random effect model with either the standard approach or the alternative one could be used for the sensitivity analysis computation. The risk estimate could be excess relative risk (ERR) or excess odds ratio (EOR).
+#' @description Fixed or Random effect model with either the standard approach or the alternative one could be used for the sensitivity
+#'              analysis computation. The risk estimate could be excess relative risk (ERR) or excess odds ratio (EOR).
 #'
-#' @param study A character vector of the name of the individual studies
+#' @description In the sensitivity analysis, each individual study is removed one at a time and the summarized estimate is computed to access
+#'              the effect of the removed study on the overall pooled estimate.
+#'
+#' @param study A vector (or column for dataframe, matrix) specifying the column reporting the author's name or the individual study's name
 #' @param err A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
-#' @param type Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.
+#' @param type Logical, the type of risk estimate reported. The default is excess indicating that risk estimate reported from the individual studies are excess (e.g. ERR or EOR).
 #' @param d A numeric vector of the maximum dose reported from the individual studies.
-#' @param test Logical indicating the statistical method to be used.
-#' @param model Logical indicating which statistical model should be used the standard or the alternative model for the pooled risk estimate
-#'
+#' @param test Logical, indicating the statistical method to be used. The user have the choice between "FIXED" for the fixed effect model, and "RANDOM" for the random effect model.
+#' @param model Logical, indicating which statistical model should be used. The user have the choice between "standard" for the standard approach, and alternative" for the alternative approach for combining the risk estimate.
+#' @param conf.level Coverage for confidence interval
 #'
 #' @return A dataframe of a pooled result from the individual studies
 #'
-#'
+#' @author Kossi Abalo
 #'
 #'
 #'
@@ -54,8 +58,13 @@
 #' @export
 #'
 #'
-exsens <- function(study, err, u, l, d=NULL,
-                   type="excess", test = c("FIXED", "RANDOM"), model=c("standard", "alternative")){
+exsens <- function(study, err, u, l, d=NULL, conf.level=0.95,
+                   type="excess", test = c("FIXED", "RANDOM"),
+                   model=c("standard", "alternative")){
+
+  if (conf.level>1 & conf.level<100)
+    conf.level<-conf.level/100
+
 
   if(missing(test) | missing(model)){
     stop("Arguments test and model should be provided")
@@ -65,16 +74,17 @@ exsens <- function(study, err, u, l, d=NULL,
       sensitivity <- NULL
       for (i in 1:length(study)) {
 
-        sens <- pexfix(err=err[-i], u=u[-i], l=l[-i], type="excess", test="FIXED")
+        sens <- pexfix(err=err[-i], u=u[-i], l=l[-i],
+                       type="excess", test="FIXED", conf.level=conf.level)
         df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
         sensitivity <- rbind(df[ , 1:5], sensitivity)
 
         #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
       }  # End of For loop
-      colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
-      class(sensitivity$RR_tot) <- "numeric"
-      class(sensitivity$SE_log_RR) <- "numeric"
+      colnames(sensitivity) <- c("Study", "ERR_tot", "SE_ERR", "Lower_CI", "Upper_CI")
+      class(sensitivity$ERR_tot) <- "numeric"
+      class(sensitivity$SE_ERR) <- "numeric"
       class(sensitivity$Lower_CI) <- "numeric"
       class(sensitivity$Upper_CI) <- "numeric"
 
@@ -91,16 +101,17 @@ exsens <- function(study, err, u, l, d=NULL,
           sensitivity <- NULL
           for (i in 1:length(study)) {
 
-            sens <- alpexfix(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess", test="FIXED")
+            sens <- alpexfix(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess",
+                             test="FIXED", conf.level=conf.level)
             df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
             df <- cbind(study[i], df)
             sensitivity <- rbind(df[ , 1:5], sensitivity)
 
             #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
           }  # End of For loop
-          colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
-          class(sensitivity$RR_tot) <- "numeric"
-          class(sensitivity$SE_log_RR) <- "numeric"
+          colnames(sensitivity) <- c("Study", "ERR_tot", "SE_ERR", "Lower_CI", "Upper_CI")
+          class(sensitivity$ERR_tot) <- "numeric"
+          class(sensitivity$SE_ERR) <- "numeric"
           class(sensitivity$Lower_CI) <- "numeric"
           class(sensitivity$Upper_CI) <- "numeric"
           #print(sensitivity)
@@ -115,16 +126,17 @@ exsens <- function(study, err, u, l, d=NULL,
       sensitivity <- NULL
       for (i in 1:length(study)) {
 
-        sens <- pexrand(err=err[-i], u=u[-i], l=l[-i], type="excess", test="RANDOM")
+        sens <- pexrand(err=err[-i], u=u[-i], l=l[-i],
+                        type="excess", test="RANDOM", conf.level=conf.level)
         df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
         sensitivity <- rbind(df[ , 1:5], sensitivity)
 
         #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
       }  # End of For loop
-      colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
-      class(sensitivity$RR_tot) <- "numeric"
-      class(sensitivity$SE_log_RR) <- "numeric"
+      colnames(sensitivity) <- c("Study", "ERR_tot", "SE_ERR", "Lower_CI", "Upper_CI")
+      class(sensitivity$ERR_tot) <- "numeric"
+      class(sensitivity$SE_ERR) <- "numeric"
       class(sensitivity$Lower_CI) <- "numeric"
       class(sensitivity$Upper_CI) <- "numeric"
       #print(sensitivity)
@@ -142,16 +154,17 @@ exsens <- function(study, err, u, l, d=NULL,
           sensitivity <- NULL
           for (i in 1:length(study)) {
 
-            sens <- alpexrand(err=err[-i], u=u[-i], l=l[-i], d=d[-i], type="excess", test="RANDOM")
+            sens <- alpexrand(err=err[-i], u=u[-i], l=l[-i], d=d[-i],
+                              type="excess", test="RANDOM", conf.level=conf.level)
             df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
             df <- cbind(study[i], df)
             sensitivity <- rbind(df[ , 1:5], sensitivity)
 
             #sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
           }  # End of For loop
-          colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
-          class(sensitivity$RR_tot) <- "numeric"
-          class(sensitivity$SE_log_RR) <- "numeric"
+          colnames(sensitivity) <- c("Study", "ERR_tot", "SE_ERR", "Lower_CI", "Upper_CI")
+          class(sensitivity$ERR_tot) <- "numeric"
+          class(sensitivity$SE_ERR) <- "numeric"
           class(sensitivity$Lower_CI) <- "numeric"
           class(sensitivity$Upper_CI) <- "numeric"
           #print(sensitivity)
@@ -164,8 +177,9 @@ exsens <- function(study, err, u, l, d=NULL,
     }
 
   }# End of else
-  sensitivity
-
+  result = sensitivity
+  names(result) = c("Study", "Effect", "SE(Effect)", "Lower CI", "Upper CI")
+  result
 }
 
 

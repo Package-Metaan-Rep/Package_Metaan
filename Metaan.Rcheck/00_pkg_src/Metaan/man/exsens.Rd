@@ -10,33 +10,40 @@ exsens(
   u,
   l,
   d = NULL,
+  conf.level = 0.95,
   type = "excess",
   test = c("FIXED", "RANDOM"),
   model = c("standard", "alternative")
 )
 }
 \arguments{
-\item{study}{A character vector of the name of the individual studies}
+\item{study}{A vector (or column for dataframe, matrix) specifying the column reporting the author's name or the individual study's name}
 
 \item{err}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.}
 
 \item{d}{A numeric vector of the maximum dose reported from the individual studies.}
 
-\item{type}{Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
+\item{conf.level}{Coverage for confidence interval}
 
-\item{test}{Logical indicating the statistical method to be used.}
+\item{type}{Logical, the type of risk estimate reported. The default is excess indicating that risk estimate reported from the individual studies are excess (e.g. ERR or EOR).}
 
-\item{model}{Logical indicating which statistical model should be used the standard or the alternative model for the pooled risk estimate}
+\item{test}{Logical, indicating the statistical method to be used. The user have the choice between "FIXED" for the fixed effect model, and "RANDOM" for the random effect model.}
+
+\item{model}{Logical, indicating which statistical model should be used. The user have the choice between "standard" for the standard approach, and alternative" for the alternative approach for combining the risk estimate.}
 }
 \value{
 A dataframe of a pooled result from the individual studies
 }
 \description{
-Fixed or Random effect model with either the standard approach or the alternative one could be used for the sensitivity analysis computation. The risk estimate could be excess relative risk (ERR) or excess odds ratio (EOR).
+Fixed or Random effect model with either the standard approach or the alternative one could be used for the sensitivity
+analysis computation. The risk estimate could be excess relative risk (ERR) or excess odds ratio (EOR).
+
+In the sensitivity analysis, each individual study is removed one at a time and the summarized estimate is computed to access
+the effect of the removed study on the overall pooled estimate.
 }
 \examples{
 study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",
@@ -72,4 +79,7 @@ l=donne$lower_ci, d=donne$dose, type="excess", test = "RANDOM",
  model = "alternative")
 
 
+}
+\author{
+Kossi Abalo
 }

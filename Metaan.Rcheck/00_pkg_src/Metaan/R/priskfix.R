@@ -1,8 +1,5 @@
-
-
-
 #' @title Pooled risk estimate using the fixed effect model meta-analysis
-#' @description Fixed effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) and hazard ratio (HR))
+#' @description Fixed effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR))
 #'
 #'
 #'@param x Object of class metaan.rr
@@ -33,7 +30,7 @@ print.metaan.rr <- function(x, ...){
 
   if(any(is.na(x$sd_tot_lnRR))) retmat_a = retmat_a[,-2, drop=FALSE]
   cat("                                                  \n")
-  cat("  Standard meta-analysis with fixed effect model \n")
+  cat("  Standard meta-analysis with fixed effect model  \n")
   cat("------------------------------------------------- \n")
   cat("                                                  \n")
   printCoefmat(retmat_a)
@@ -58,12 +55,12 @@ print.metaan.rr <- function(x, ...){
 #' @description Fixed effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) and hazard ratio (HR))
 #'
 #' @param rr A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
-#' @param form Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.
+#' @param form Logical indicating the scale of the data. If Log, then the original data are in logarithmic scale.
 #' @param type Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.
 #' @param test Logical indicating the statistical method to be used. The default if FIXE for the fixed effect model.
-#' @param conf.level Coverage for confidence intervals
+#' @param conf.level Coverage for confidence interval
 #'
 #' @return A list of a pooled result from the individual studies
 #'

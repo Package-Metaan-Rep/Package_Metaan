@@ -2,7 +2,7 @@
 % Please edit documentation in R/risksens.R
 \name{risksens}
 \alias{risksens}
-\title{Sensitivity analysis for relative risk meta-analysis}
+\title{Sensitivity analysis for relative risk (or odds ratio) meta-analysis}
 \usage{
 risksens(
   study,
@@ -11,31 +11,36 @@ risksens(
   l,
   form = c("Log", "nonLog"),
   type = "risk",
-  test = c("FIXED", "RANDOM")
+  test = c("FIXED", "RANDOM"),
+  conf.level = 0.95
 )
 }
 \arguments{
-\item{study}{A character vector of the name of the individual studies}
+\item{study}{A vector (or column for dataframe, matrix) specifying the column reporting the author's name or the individual study's name}
 
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
 
-\item{l}{A numeric vector of the lower confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
 
-\item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.}
+\item{form}{Logical, indicating the scale of the data. If Log, then the original data are in logarithmic scale.}
 
-\item{type}{Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
+\item{type}{Logical, indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
 
-\item{test}{Logical indicating the statistical method to be used.}
+\item{test}{Logical, indicating the statistical method to be used. The user have the choice between "FIXED" for the fixed effect model, and "RANDOM" for the random effect model.}
+
+\item{conf.level}{Coverage for confidence interval}
 }
 \value{
-A dataframe of a pooled result from the individual studies
+A dataframe of a pooled result from the individual studies where
 }
 \description{
-Fixed or Random effect model could be used for the sensitivity analysis computation.
+Fixed or Random effect model could be used for the sensitivity analysis computation. The
+risk estimate could be e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR).
 
-The risk estimate could be e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR)
+In the sensitivity analysis, each individual study is removed one at a time and the
+summarized estimate is computed to access the effect of the removed study on the overall pooled estimate.
 }
 \examples{
 study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",
@@ -68,4 +73,7 @@ type="risk", form="nonLog", test = "FIXED")
 risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
 type="risk", form="nonLog", test = "RANDOM")
 
+}
+\author{
+Kossi Abalo
 }

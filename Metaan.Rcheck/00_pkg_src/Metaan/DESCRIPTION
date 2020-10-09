@@ -1,6 +1,6 @@
 Package: Metaan
 Type: Package
-Title: Meta-analysis of Published Epidemiological Studies
+Title: Meta-Analysis of Published Epidemiological Studies
 Version: 0.1.0
 Authors@R: c(person(given = "Kossi",
            family = "Abalo",
@@ -15,18 +15,16 @@ Authors@R: c(person(given = "Kossi",
     person(given = "Mark",
           family = "Little",
           role = "aut",
-          email = "mark.little@nih.gov",
-          comment = c(ORCID = "YOUR-ORCID-ID")),
+          email = "mark.little@nih.gov"),
     person(given = "David",
         family = "Richardson",
         role = "aut",
-        email = "david.richardson@unc.edu",
-        comment = c(ORCID = "YOUR-ORCID-ID")))
-Description: The package helps combine estimates from published individual studies and provide 
-      a summarized or a pooled estimate of evidence. It makes use of statiscal methods of meta-analysis
+        email = "david.richardson@unc.edu"))
+Description: To combine estimates from published individual studies and provide 
+      a summarized or a pooled estimate of evidence. It makes use of statistical methods of meta-analysis
       computation such as the fixed effect model and the random effect model. These methods are ready for 
       risk estimates (e.g relative risk (RR), odds ratio (OR) and hazard ratio (HR)) meta-analyses but are 
-      improved using the alternative method of Richardson et al. for the computation of 
+      improved using the alternative method of Richardson et al 2020 for the computation of 
       excess relative risk (ERR) estimates metanalyses.
 Depends: R (>= 3.4.3)
 License: GPL
@@ -35,10 +33,11 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: magrittr, stats
+Suggests: testthat
 NeedsCompilation: no
-Packaged: 2020-10-04 20:28:42 UTC; antoi
+Packaged: 2020-10-09 23:42:50 UTC; antoi
 Author: Kossi Abalo [aut, cre] (<https://orcid.org/0000-0001-5064-0215>),
   Alexander Keil [aut] (<https://orcid.org/0000-0002-0955-6107>),
-  Mark Little [aut] (YOUR-ORCID-ID),
-  David Richardson [aut] (YOUR-ORCID-ID)
+  Mark Little [aut],
+  David Richardson [aut]
 Maintainer: Kossi Abalo <antoine.kossi@hotmail.com>

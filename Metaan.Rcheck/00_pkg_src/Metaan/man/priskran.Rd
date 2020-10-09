@@ -17,23 +17,23 @@ priskran(
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.}
+\item{form}{Logical, indicating the scale of the data. If Log, then the original data are in logarithme scale.}
 
-\item{type}{Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
+\item{type}{Logical, indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
 
-\item{test}{Logical indicating the statistical method to be used. The default if RANDOM for the random effect model.}
+\item{test}{Logical, indicating the statistical method to be used. The default if RANDOM for the random effect model.}
 
-\item{conf.level}{Coverage for confidence intervals}
+\item{conf.level}{Coverage for confidence interval}
 }
 \value{
 A list of a pooled result from the individual studies
 }
 \description{
-Random effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) and hazard ratio (HR))
+DerSimonian and Laird-based Random effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR))
 }
 \examples{
 study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm",

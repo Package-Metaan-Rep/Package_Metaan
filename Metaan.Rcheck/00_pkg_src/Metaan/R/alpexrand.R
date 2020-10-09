@@ -1,14 +1,14 @@
 #'
 #' @title  Pooled excess risk estimate using the alternative random effect model meta-analysis
-#' @description Alternative fixed effect model for alternative meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
+#' @description DerSimonian and Laird-based random effect meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates with Richardson et al 2020 alternative model.
 #'
 #' @param err A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.
 #' @param d A numeric vector of the maximum dose reported from the individual studies.
-#' @param type Logical indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.
-#' @param test Logical indicating the statistical method to be used. The default is "RANDOM" for the random effect model.
-#' @param conf.level Coverage for confidence intervals
+#' @param type Logical, indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.
+#' @param test Logical, indicating the statistical method to be used. The default is "RANDOM" for the random effect model.
+#' @param conf.level Coverage for confidence interval
 #'
 #'
 #' @importFrom stats printCoefmat

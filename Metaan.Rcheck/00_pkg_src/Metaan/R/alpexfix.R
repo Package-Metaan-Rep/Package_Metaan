@@ -1,14 +1,14 @@
 #'
 #' @title  Pooled excess risk estimate using the alternative fixed effect model meta-analysis
-#' @description Alternative fixed effect model for meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
+#' @description Fixed effect meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates with Richardson et al 2020 alternative model.
 #'
 #' @param err A numeric vector of the risk estimated from the individual studies
-#' @param u A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.
-#' @param l A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.
+#' @param u A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.
+#' @param l A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.
 #' @param d A numeric vector of the maximum dose reported from the individual studies.
 #' @param type Logical indicating the method to be used. The default is "excess" indicating that excess risk estimate model should be used.
-#' @param test Logical indicating the statistical method to be used. The default is "FIXE" for the fixed effect model.
-#' @param conf.level Coverage for confidence intervals
+#' @param test Logical indicating the statistical method to be used. The default is "FIXED" for the fixed effect model.
+#' @param conf.level Coverage for the confidence interval
 #'
 #'
 #' @importFrom stats printCoefmat
@@ -33,7 +33,7 @@
 #' donne$dose <- as.numeric(as.character(donne$dose))
 #'
 #' alpexfix(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci, d=donne$dose,
-#' type = "excess", test = "FIXE")
+#' type = "excess", test = "FIXE", conf.level=0.95)
 #'
 #'
 #' @references

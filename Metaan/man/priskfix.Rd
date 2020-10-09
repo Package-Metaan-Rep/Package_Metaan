@@ -17,17 +17,17 @@ priskfix(
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
 
-\item{u}{A numeric vector of the upper bound of the confidence interval of the risk estimated from the individual studies.}
+\item{u}{A numeric vector of the upper bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{l}{A numeric vector of the lower bound of the confidence interval of the risk estimated from the individual studies.}
+\item{l}{A numeric vector of the lower bound of the confidence interval of the risk reported from the individual studies.}
 
-\item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithme scale.}
+\item{form}{Logical indicating the scale of the data. If Log, then the original data are in logarithmic scale.}
 
 \item{type}{Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
 
 \item{test}{Logical indicating the statistical method to be used. The default if FIXE for the fixed effect model.}
 
-\item{conf.level}{Coverage for confidence intervals}
+\item{conf.level}{Coverage for confidence interval}
 }
 \value{
 A list of a pooled result from the individual studies
