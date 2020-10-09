@@ -11,7 +11,7 @@ exsens(
   l,
   d = NULL,
   type = "excess",
-  test = c("FIXE", "RANDOM"),
+  test = c("FIXED", "RANDOM"),
   model = c("standard", "alternative")
 )
 }
@@ -58,13 +58,13 @@ donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 donne$dose <- as.numeric(as.character(donne$dose))
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
-l=donne$lower_ci, type="excess", test = "FIXE", model = "standard")
+l=donne$lower_ci, type="excess", test = "FIXED", model = "standard")
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
 l=donne$lower_ci, type="excess", test = "RANDOM", model = "standard")
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,
-l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXE",
+l=donne$lower_ci, d=donne$dose, type="excess", test = "FIXED",
  model = "alternative")
 
 exsens(study=donne$study, err=donne$Risk, u=donne$upper_ci,

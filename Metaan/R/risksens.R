@@ -33,34 +33,36 @@
 #' donne$ln_upper_ci <- log(donne$upper_ci)
 #'
 #' risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-#' type="risk", form="Log", test = "FIXE")
+#' type="risk", form="Log", test = "FIXED")
 #'
 #' risksens(study=donne$study, rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
 #' type="risk", form="Log", test = "RANDOM")
 #'
 #' risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-#' type="risk", form="nonLog", test = "FIXE")
+#' type="risk", form="nonLog", test = "FIXED")
 #'
 #' risksens(study=donne$study, rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
 #' type="risk", form="nonLog", test = "RANDOM")
 #'
 #' @export
 #'
-
 risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
-                     type="risk", test = c("FIXE", "RANDOM")){
+                     type="risk", test = c("FIXED", "RANDOM")){
 
   if(missing(test) | missing(form)){
     stop("Arguments test and form should be provided")
   }else{
 
-    if(test=="FIXE" & form=="Log"){
+    if(test=="FIXED" & form=="Log"){
       sensitivity <- NULL
       for (i in 1:length(study)) {
-        df <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="Log", type="risk", test="FIXE")
 
+        sens <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="Log", type="risk", test="FIXED")
+
+        df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
-        sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+        sensitivity <- rbind(df[ , 1:5], sensitivity)
+
       }  # End of For loop
       colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
       sensitivity$RR_tot<-as.numeric(as.character(sensitivity$RR_tot))
@@ -68,18 +70,22 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
       sensitivity$Lower_CI<-as.numeric(as.character(sensitivity$Lower_CI))
       sensitivity$Upper_CI<-as.numeric(as.character(sensitivity$Upper_CI))
       #print(sensitivity)
-      #print("FIXE EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
+      #print("FIXED EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
       message("FIXED EFFECT MODEL RISK ESTIMATE ON LOG SCALE")
 
     }else{
 
-      if(test=="FIXE" & form=="nonLog"){
+      if(test=="FIXED" & form=="nonLog"){
         sensitivity <- NULL
         for (i in 1:length(study)) {
-          df <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="nonLog", type="risk", test="FIXE")
 
+
+          sens <- priskfix(rr=rr[-i], u=u[-i], l=l[-i], form="nonLog", type="risk", test="FIXED")
+
+          df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
           df <- cbind(study[i], df)
-          sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+          sensitivity <- rbind(df[ , 1:5], sensitivity)
+
         }  # End of For loop
         colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
         sensitivity$RR_tot<-as.numeric(as.character(sensitivity$RR_tot))
@@ -87,7 +93,7 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
         sensitivity$Lower_CI<-as.numeric(as.character(sensitivity$Lower_CI))
         sensitivity$Upper_CI<-as.numeric(as.character(sensitivity$Upper_CI))
         #print(sensitivity)
-        #print("FIXE EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
+        #print("FIXED EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
         message("FIXED EFFECT MODEL RISK ESTIMATE ON NON-LOG SCALE")
 
       }
@@ -98,10 +104,12 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
     if(test=="RANDOM" & form=="Log"){
       sensitivity <- NULL
       for (i in 1:length(study)) {
-        df <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="Log", type="risk", test="RANDOM")
 
+        sens <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="Log", type="risk", test="RANDOM")
+        df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
         df <- cbind(study[i], df)
-        sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+        sensitivity <- rbind(df[ , 1:5], sensitivity)
+
       }  # End of For loop
       colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
       sensitivity$RR_tot<-as.numeric(as.character(sensitivity$RR_tot))
@@ -117,10 +125,14 @@ risksens <- function(study, rr, u, l, form = c("Log", "nonLog"),
       if(test=="RANDOM" & form=="nonLog"){
         sensitivity <- NULL
         for (i in 1:length(study)) {
-          df <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="nonLog", type="risk", test="RANDOM")
 
+
+          sens <- priskran(rr=rr[-i], u=u[-i], l=l[-i], form="nonLog", type="risk", test="RANDOM")
+          df <- data.frame(t(matrix(unlist(sens), nrow=length(sens), byrow=T)))
           df <- cbind(study[i], df)
-          sensitivity <- rbind(df[ , c(1, 3:6)], sensitivity)
+          sensitivity <- rbind(df[ , 1:5], sensitivity)
+
+
         }  # End of For loop
         colnames(sensitivity) <- c("Study", "RR_tot", "SE_log_RR", "Lower_CI", "Upper_CI")
         sensitivity$RR_tot<-as.numeric(as.character(sensitivity$RR_tot))

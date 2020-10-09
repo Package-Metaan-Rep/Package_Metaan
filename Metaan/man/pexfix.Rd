@@ -4,7 +4,7 @@
 \alias{pexfix}
 \title{Pooled excess risk estimate using the fixed effect model meta-analysis}
 \usage{
-pexfix(err, u, l, type = "excess", test = "FIXE")
+pexfix(err, u, l, type = "excess", test = "FIXED", conf.level = 0.95)
 }
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}
@@ -15,7 +15,9 @@ pexfix(err, u, l, type = "excess", test = "FIXE")
 
 \item{type}{Logical indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.}
 
-\item{test}{Logical indicating the statistical method to be used. The default if FIXE for the fixe effect model.}
+\item{test}{Logical indicating the statistical method to be used. The default if FIXE for the fixed effect model.}
+
+\item{conf.level}{Coverage for confidence intervals}
 }
 \description{
 Fixed effect model for standard meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
@@ -37,7 +39,7 @@ donne$upper_ci <- as.numeric(as.character(donne$upper_ci))
 donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 
 pexfix(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "excess", test = "FIXE")
+type = "excess", test = "FIXED", conf.level=0.95)
 
 
 }

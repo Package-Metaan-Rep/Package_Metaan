@@ -4,7 +4,15 @@
 \alias{priskran}
 \title{Pooled risk estimate using the random effect model meta-analysis}
 \usage{
-priskran(rr, u, l, form = c("Log", "nonLog"), type = "risk", test = "RANDOM")
+priskran(
+  rr,
+  u,
+  l,
+  form = c("Log", "nonLog"),
+  type = "risk",
+  test = "RANDOM",
+  conf.level = 0.95
+)
 }
 \arguments{
 \item{rr}{A numeric vector of the risk estimated from the individual studies}
@@ -18,6 +26,8 @@ priskran(rr, u, l, form = c("Log", "nonLog"), type = "risk", test = "RANDOM")
 \item{type}{Logical indicating the method to be used. The default is risk indicating that risk estimate model should be used.}
 
 \item{test}{Logical indicating the statistical method to be used. The default if RANDOM for the random effect model.}
+
+\item{conf.level}{Coverage for confidence intervals}
 }
 \value{
 A list of a pooled result from the individual studies
@@ -48,10 +58,10 @@ donne$ln_upper_ci <- log(donne$upper_ci)
 
 
 priskran(rr=donne$Risk, u=donne$upper_ci, l=donne$lower_ci,
-type = "risk", test = "RANDOM", form="nonLog")
+type = "risk", test = "RANDOM", form="nonLog", conf.level=0.95)
 
 priskran(rr=donne$ln_risk, u=donne$ln_upper_ci, l=donne$ln_lower_ci,
-type = "risk", test = "RANDOM", form="Log")
+type = "risk", test = "RANDOM", form="Log", conf.level=0.95)
 
 }
 \references{

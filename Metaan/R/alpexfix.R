@@ -8,6 +8,11 @@
 #' @param d A numeric vector of the maximum dose reported from the individual studies.
 #' @param type Logical indicating the method to be used. The default is "excess" indicating that excess risk estimate model should be used.
 #' @param test Logical indicating the statistical method to be used. The default is "FIXE" for the fixed effect model.
+#' @param conf.level Coverage for confidence intervals
+#'
+#'
+#' @importFrom stats printCoefmat
+#' @importFrom stats qnorm
 #'
 #'
 #'
@@ -37,24 +42,99 @@
 #' @export
 #'
 alpexfix <- function(err, u, l, d,
-                     type="excess", test="FIXED"){
+                     type="excess", test="FIXED", conf.level=0.95){
+
+  if (conf.level>1 & conf.level<100)
+    conf.level<-conf.level/100
+
+  z.alpha <- (-qnorm((1-conf.level)/2))
+
   C = min(d, na.rm=T)
   A = log(C*err+1)
-  sd_A = log((C*u+1)/(C*l+1))/(2*1.96)
+  sd_A = log((C*u+1)/(C*l+1))/(2*z.alpha)
   var_A = sd_A^2
   sum_num = sum(A/var_A, na.rm = T)
   sum_den = sum(1/var_A, na.rm = T)
   A_tot = sum_num/sum_den
+  Q = sum(((A - A_tot)/sd_A)^2)
   sd_Atot = 1/(sqrt(sum_den))
-  ret = as.data.frame(cbind(type="Alternative proposed approach with fixed effect model",
-                            err_tot = (exp(A_tot)-1)/C,
-                            sd_tot_lnERR = sd_Atot,
-                            l_tot = (exp(A_tot - 1.96*sd_Atot)-1)/C,
-                            u_tot = (exp(A_tot + 1.96*sd_Atot)-1)/C
 
-  ))
-  #class(ret) <- "metaan"
+  # Compute heterogeneity
+
+  k = length(A)
+  df = k - 1
+  I = max(0 , round((1 - (df/Q))*100, 2))
+
+
+  # Compute the result
+
+  ret = list(err_tot = round((exp(A_tot)-1) / C, 2),
+             sd_tot_lnERR = round(sd_Atot, 2),
+             l_tot = round((exp(A_tot - z.alpha*sd_Atot)-1)/C, 2),
+             u_tot = round((exp(A_tot + z.alpha*sd_Atot)-1)/C, 2),
+             Cochrane_stat = round(Q, 2),
+             Degree_freedom = round(df, 2),
+             p_value = round(stats::pchisq(Q, df, lower.tail = F), 2),
+             I_square = I )
+
+  class(ret) <- "metaan.arf"
   ret
 }
 
 
+
+
+#'
+#' @title  Pooled excess risk estimate using the alternative fixed effect model meta-analysis
+#' @description Alternative fixed effect model for meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
+#'
+#'
+#'
+#' @param x Object of class metaan.arf
+#' @param ... Other arguments
+#'
+#' @importFrom stats printCoefmat
+#' @importFrom stats qnorm
+#' @rdname metaan.arf
+#'
+#' @return
+#' @export
+#'
+#'
+#'
+#'
+print.metaan.arf <- function(x, ...){
+  retmat_a = cbind(x$err_tot, x$sd_tot, x$l_tot, x$u_tot)
+
+  retmat_b = cbind(x$Cochrane_stat, x$Degree_freedom, x$p_value)
+
+  retmat_c = cbind(x$I_square)
+
+  colnames(retmat_a) <- c("Effect", "SE-Log(Effect)", "Lower CI", "Upper CI")
+  colnames(retmat_b) <- c("Cochran’s Q statistic", "Degree of Freedom", "P-Value")
+  colnames(retmat_c) <- c("Higgins’ and Thompson’s I^2 (%)")
+
+  rownames(retmat_a) <- " "
+  rownames(retmat_b) <- " "
+  rownames(retmat_c) <- " "
+
+  if(any(is.na(x$sd_tot))) retmat_a = retmat_a[,-2, drop=FALSE]
+  cat("                                                     \n")
+  cat(" Alternative meta-analysis with random effect model  \n")
+  cat("---------------------------------------------------- \n")
+  cat("                                                     \n")
+  printCoefmat(retmat_a)
+  cat("                                                     \n")
+  cat("---------------------------------------------------- \n")
+  cat("                                                     \n")
+  cat("              Test of heterogeneity  \n")
+  cat("                                                     \n")
+  printCoefmat(retmat_b)
+  cat("                                                     \n")
+  cat("---------------------------------------------------- \n")
+  cat("                                                     \n")
+  printCoefmat(retmat_c)
+  cat("____________________________________________________ \n")
+  cat("                                                     \n")
+
+}

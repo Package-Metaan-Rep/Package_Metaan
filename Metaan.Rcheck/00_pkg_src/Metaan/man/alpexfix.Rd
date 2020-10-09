@@ -4,7 +4,7 @@
 \alias{alpexfix}
 \title{Pooled excess risk estimate using the alternative fixed effect model meta-analysis}
 \usage{
-alpexfix(err, u, l, d, type = "excess", test = "FIXE")
+alpexfix(err, u, l, d, type = "excess", test = "FIXED", conf.level = 0.95)
 }
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}
@@ -18,6 +18,8 @@ alpexfix(err, u, l, d, type = "excess", test = "FIXE")
 \item{type}{Logical indicating the method to be used. The default is "excess" indicating that excess risk estimate model should be used.}
 
 \item{test}{Logical indicating the statistical method to be used. The default is "FIXE" for the fixed effect model.}
+
+\item{conf.level}{Coverage for confidence intervals}
 }
 \description{
 Alternative fixed effect model for meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.

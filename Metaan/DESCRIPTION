@@ -3,24 +3,24 @@ Type: Package
 Title: Meta-analysis of Published Epidemiological Studies
 Version: 0.1.0
 Authors@R: c(person(given = "Kossi",
-           family = "ABALO",
+           family = "Abalo",
            role = c("aut", "cre"),
            email = "antoine.kossi@hotmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID")),
+           comment = c(ORCID = "0000-0001-5064-0215")),
     person(given = "Alexander",
           family = "Keil",
           role = "aut",
           email = "akeil@unc.edu",
           comment = c(ORCID = "0000-0002-0955-6107")),
     person(given = "Mark",
-          family = "LITTLE",
+          family = "Little",
           role = "aut",
-          email = "antoine.kossi@hotmail.com",
+          email = "mark.little@nih.gov",
           comment = c(ORCID = "YOUR-ORCID-ID")),
     person(given = "David",
-        family = "RICHARDSON",
+        family = "Richardson",
         role = "aut",
-        email = "antoine.kossi@hotmail.com",
+        email = "david.richardson@unc.edu",
         comment = c(ORCID = "YOUR-ORCID-ID")))
 Description: The package helps combine estimates from published individual studies and provide 
       a summarized or a pooled estimate of evidence. It makes use of statiscal methods of meta-analysis

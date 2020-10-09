@@ -4,7 +4,7 @@
 \alias{alpexrand}
 \title{Pooled excess risk estimate using the alternative random effect model meta-analysis}
 \usage{
-alpexrand(err, u, l, d, type = "excess", test = "FIXE")
+alpexrand(err, u, l, d, type = "excess", test = "FIXED", conf.level = 0.95)
 }
 \arguments{
 \item{err}{A numeric vector of the risk estimated from the individual studies}
@@ -18,6 +18,8 @@ alpexrand(err, u, l, d, type = "excess", test = "FIXE")
 \item{type}{Logical indicating the method to be used. The default is "excess" indicating that risk estimate model should be used.}
 
 \item{test}{Logical indicating the statistical method to be used. The default is "RANDOM" for the random effect model.}
+
+\item{conf.level}{Coverage for confidence intervals}
 }
 \description{
 Alternative fixed effect model for alternative meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
@@ -39,7 +41,7 @@ donne$lower_ci <- as.numeric(as.character(donne$lower_ci))
 donne$dose <- as.numeric(as.character(donne$dose))
 
 alpexrand(err=donne$Risk, u=donne$upper_ci, l=donne$lower_ci, d=donne$dose,
-type = "excess", test = "RANDOM")
+type = "excess", test = "RANDOM", conf.level=0.95)
 
 }
 \references{
