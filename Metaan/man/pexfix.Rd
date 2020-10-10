@@ -19,6 +19,19 @@ pexfix(err, u, l, type = "excess", test = "FIXED", conf.level = 0.95)
 
 \item{conf.level}{Coverage for confidence interval}
 }
+\value{
+Object of class "metaan.era". A list that print the output from the pexfix function. The following could be found from the list :
+\itemize{
+\item err_tot (Effect): The pooled effect from excess relative risk (ERR) or excess odd ratio (EOR) estimates
+\item sd_tot (SE Effect): The standard error of the pooled effect (see reference Richardson et al 2020 for more details)
+\item l_tot (Lower CI): The lower confidence interval bound of the pooled effect (err_tot)
+\item u_tot (Upper CI): The upper confidence interval bound of the pooled effect (err_tot)
+\item Cochrane_stat (Cochran’s Q statistic): The value of the Cochrane's statistic of inter-study heterogeneity
+\item Degree_freedom (Degree of Freedom): The degree of freedom
+\item p_value (P-Value): The p-value of the statistic of Cochrane
+\item I_square (Higgins’ and Thompson’s I^2 (\%)): I square value in percent (\%) indicating the amount of the inter-study heterogeneity
+}
+}
 \description{
 Fixed effect model for standard meta-analysis of excess relative risk (ERR) or excess odds ratio (EOR) estimates.
 }

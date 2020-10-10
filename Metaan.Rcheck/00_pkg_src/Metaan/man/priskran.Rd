@@ -30,7 +30,17 @@ priskran(
 \item{conf.level}{Coverage for confidence interval}
 }
 \value{
-A list of a pooled result from the individual studies
+Object of class "metaan.ra". A list that print the output from the priskran function. The following could be found from the list :
+\itemize{
+\item rr_tot (Effect): The pooled effect from the individual studies' estimate (RR, OR, or HR)
+\item sd_tot_lnRR (SE-Log(Effect)): The standard error of the pooled effect (see reference Richardson et al 2020 for more details)
+\item l_tot (Lower CI): The lower confidence interval bound of the pooled effect (rr_tot)
+\item u_tot (Upper CI): The upper confidence interval bound of the pooled effect (rr_tot)
+\item Cochrane_stat (Cochran’s Q statistic): The value of the Cochrane's statistic of inter-study heterogeneity
+\item Degree_freedom (Degree of Freedom): The degree of freedom
+\item p_value (P-Value): The p-value of the statistic of Cochrane
+\item I_square (Higgins’ and Thompson’s I^2 (\%)): I square value in percent (\%) indicating the amount of the inter-study heterogeneity
+}
 }
 \description{
 DerSimonian and Laird-based Random effect model for standard meta-analysis of risk estimate (e.g relative risk (RR), odds ratio (OR) or hazard ratio (HR))

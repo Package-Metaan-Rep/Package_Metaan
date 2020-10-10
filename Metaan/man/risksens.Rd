@@ -33,7 +33,14 @@ risksens(
 \item{conf.level}{Coverage for confidence interval}
 }
 \value{
-A dataframe of a pooled result from the individual studies where
+Object of class "data.frame" that print the output from the risksens function. The following could be found from the output :
+\itemize{
+\item Study: Indication of the study removed from the pooled effect estimate
+\item Effect: The pooled effect from the individual studies' estimate (RR, OR, or HR)
+\item SE-Log(Effect): The standard error of the pooled effect (see reference Richardson et al 2020 for more details)
+\item Lower CI: The lower confidence interval bound of the pooled effect
+\item Upper CI: The upper confidence interval bound of the pooled effect
+}
 }
 \description{
 Fixed or Random effect model could be used for the sensitivity analysis computation. The
