@@ -36,7 +36,14 @@ exsens(
 \item{model}{Logical, indicating which statistical model should be used. The user have the choice between "standard" for the standard approach, and alternative" for the alternative approach for combining the risk estimate.}
 }
 \value{
-A dataframe of a pooled result from the individual studies
+Object of class "data.frame" that print the output from the exsens function. The following could be found from the output :
+\itemize{
+\item Study: Indication of the study removed from the pooled effect estimate
+\item Effect: The pooled effect from the individual studies' estimate (ERR or EOR)
+\item SE(Effect): The standard error of the pooled effect (see reference Richardson et al 2020 for more details)
+\item Lower CI: The lower confidence interval bound of the pooled effect
+\item Upper CI: The upper confidence interval bound of the pooled effect
+}
 }
 \description{
 Fixed or Random effect model with either the standard approach or the alternative one could be used for the sensitivity

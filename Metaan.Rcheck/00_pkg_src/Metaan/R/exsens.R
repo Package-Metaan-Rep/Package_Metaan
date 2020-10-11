@@ -15,7 +15,12 @@
 #' @param model Logical, indicating which statistical model should be used. The user have the choice between "standard" for the standard approach, and alternative" for the alternative approach for combining the risk estimate.
 #' @param conf.level Coverage for confidence interval
 #'
-#' @return A dataframe of a pooled result from the individual studies
+#' @return Object of class "data.frame" that print the output from the exsens function. The following could be found from the output :
+#'  - Study: Indication of the study removed from the pooled effect estimate
+#'  - Effect: The pooled effect from the individual studies' estimate (ERR or EOR)
+#'  - SE(Effect): The standard error of the pooled effect (see reference Richardson et al 2020 for more details)
+#'  - Lower CI: The lower confidence interval bound of the pooled effect
+#'  - Upper CI: The upper confidence interval bound of the pooled effect
 #'
 #' @author Kossi Abalo
 #'

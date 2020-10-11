@@ -15,6 +15,19 @@
 #' @importFrom stats qnorm
 #'
 #'
+#' @return Object of class "metaan.ara". A list that print the output from the alpexrand function. The following could be found from the list :
+#'  - err_tot (Effect): The pooled effect from excess relative risk (ERR) or excess odd ratio (EOR) estimates
+#'  - sd_tot_lnERR (SE-Log(Effect)): The standard error of the  logarithm of the pooled effect (see reference Richardson et al 2020 for more details)
+#'  - l_tot (Lower CI): The lower confidence interval bound of the pooled effect (err_tot)
+#'  - u_tot (Upper CI): The upper confidence interval bound of the pooled effect (err_tot)
+#'  - Cochrane_stat (Cochran’s Q statistic): The value of the Cochrane's statistic of inter-study heterogeneity
+#'  - Degree_freedom (Degree of Freedom): The degree of freedom
+#'  - p_value (P-Value): The p-value of the statistic of Cochrane
+#'  - I_square (Higgins’ and Thompson’s I^2 (%)): I square value in percent (%) indicating the amount of the inter-study heterogeneity
+#'
+#'
+#'
+#'
 #' @examples
 #' study <- c("Canada", "Northern USA", "Chicago", "Georgia","Puerto", "Comm", "Madanapalle",
 #' "UK", "South Africa", "Haiti", "Madras")

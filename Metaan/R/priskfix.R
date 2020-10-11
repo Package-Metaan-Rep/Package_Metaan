@@ -68,6 +68,15 @@ print.metaan.rr <- function(x, ...){
 #' @importFrom stats qnorm
 #'
 #'
+#' @return Object of class "metaan.rr". A list that print the output from the priskfix function. The following could be found from the list :
+#'  - rr_tot (Effect): The pooled effect from the individual studies' estimate (RR, OR, or HR)
+#'  - sd_tot_lnRR (SE-Log(Effect)): The standard error of the pooled effect (see reference Richardson et al 2020 for more details)
+#'  - l_tot (Lower CI): The lower confidence interval bound of the pooled effect (rr_tot)
+#'  - u_tot (Upper CI): The upper confidence interval bound of the pooled effect (rr_tot)
+#'  - Cochrane_stat (Cochran’s Q statistic): The value of the Cochrane's statistic of inter-study heterogeneity
+#'  - Degree_freedom (Degree of Freedom): The degree of freedom
+#'  - p_value (P-Value): The p-value of the statistic of Cochrane
+#'  - I_square (Higgins’ and Thompson’s I^2 (%)): I square value in percent (%) indicating the amount of the inter-study heterogeneity
 #'
 #'
 #' @examples
