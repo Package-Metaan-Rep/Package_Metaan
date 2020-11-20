@@ -35,7 +35,7 @@ RoxygenNote: 7.1.1
 Imports: magrittr, stats
 Suggests: testthat
 NeedsCompilation: no
-Packaged: 2020-10-10 13:07:04 UTC; antoi
+Packaged: 2020-11-20 15:51:00 UTC; antoi
 Author: Kossi Abalo [aut, cre] (<https://orcid.org/0000-0001-5064-0215>),
   Alexander Keil [aut] (<https://orcid.org/0000-0002-0955-6107>),
   Mark Little [aut],

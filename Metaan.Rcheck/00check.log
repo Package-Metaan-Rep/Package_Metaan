@@ -1,4 +1,4 @@
-* using log directory 'C:/Users/antoi/OneDrive - Aix-Marseille Université/Document/GitHub/Package_Metaan/Metaan.Rcheck'
+* using log directory 'C:/Users/antoi/OneDrive - Aix-Marseille Université/Document/GitHub/Novembre_2020/Package_Metaan/Metaan.Rcheck'
 * using R version 4.0.2 (2020-06-22)
 * using platform: x86_64-w64-mingw32 (64-bit)
 * using session charset: ISO8859-1
@@ -17,6 +17,6 @@
 * checking serialization versions ... OK
 * checking whether package 'Metaan' can be installed ... ERROR
 Installation failed.
-See 'C:/Users/antoi/OneDrive - Aix-Marseille Université/Document/GitHub/Package_Metaan/Metaan.Rcheck/00install.out' for details.
+See 'C:/Users/antoi/OneDrive - Aix-Marseille Université/Document/GitHub/Novembre_2020/Package_Metaan/Metaan.Rcheck/00install.out' for details.
 * DONE
 Status: 1 ERROR
